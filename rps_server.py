@@ -22,7 +22,7 @@ print("Server is running... Waiting for players.")
 
 # Main server loop – runs forever to handle new games
 while True:
-    print("\nWaiting for two players to connect...")
+    print("\nWaiting for two players...")
 
     # Accept connection from Player 1
     conn1, addr1 = server_socket.accept()
