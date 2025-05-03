@@ -18,7 +18,10 @@ while True:
 
     # If the server asks for a move, get input from the player and send it
     if "Enter rock" in message:
-        move = input("Your move: ")
+        move = input("Your move (rock, paper, or scissors): ")
+        if move not in ["rock", "paper", "scissors"]:
+            print("Invalid move! Please enter rock, paper, or scissors.")
+            continue
         client_socket.send(move.strip().lower().encode())
 
     # If the final score is sent, break the loop and close the connection
