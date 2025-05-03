@@ -20,7 +20,7 @@ while True:
     if "Enter rock" in message:
         move = input("Your move (rock, paper, or scissors): ")
         if move not in ["rock", "paper", "scissors"]:
-            print("Invalid move! Please enter rock, paper, or scissors.")
+            print("Invalid move! Please Enter rock, paper, or scissors.")
             continue
         client_socket.send(move.strip().lower().encode())
 
