@@ -1,5 +1,6 @@
 import socket
 
+
 # Function to determine the winner between two moves
 def determine_winner(move1, move2):
     if move1 == move2:
@@ -10,6 +11,7 @@ def determine_winner(move1, move2):
         return 1  # player 1 wins
     else:
         return 2  # player 2 wins
+
 
 host = "localhost"
 port = 6000
@@ -42,20 +44,18 @@ while True:
         # Let Player 2 know they must wait
         conn2.send("Waiting for Player 1 to make a move...\n".encode())
 
-        # Prompt Player 1 to enter their move
-        conn1.send(f"\nRound {round_number}: Enter rock, paper or scissors: ".encode())
+        # Prompt Player 1 for their move
+        conn1.send(f"\nRound {round_number}: Enter rock, paper, or scissors: ".encode())
         move1 = conn1.recv(1024).decode().strip().lower()
+
         print(f"Player 1 move: {move1}")  # Debugging output
 
-        # Now prompt Player 2 after Player 1 has moved
-        conn2.send(f"\nRound {round_number}: Player 1 has played. Now it's your turn: ".encode())
+        # Prompt Player 1 for their move
+        conn2.send(f"\nRound {round_number}: Player 1 has played. Now it's your turn.\n".encode())
+        conn2.send(f"\nRound {round_number}: Enter rock, paper, or scissors: ".encode())
         move2 = conn2.recv(1024).decode().strip().lower()
-        print(f"Player 2 move: {move2}")  # Debugging output
 
-        if not move2:
-            print("Error: Player 2 did not send a valid move.")  # Debugging output
-            conn2.send("Error: Invalid move received from Player 2. Please try again.".encode())
-            continue
+        print(f"Player 2 move: {move2}")  # Debugging output
 
         # Determine who won the round
         result = determine_winner(move1, move2)
